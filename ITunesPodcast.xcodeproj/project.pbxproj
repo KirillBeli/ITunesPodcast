@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273262E529BE856700AD552B /* Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273262E429BE856700AD552B /* Extansions.swift */; };
 		2734EBE029B2993C00BB7084 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2734EBDE29B2993C00BB7084 /* DetailsViewController.swift */; };
 		2734EBE129B2993C00BB7084 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */; };
 		274E802D29B25D000055CE75 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E802B29B25D000055CE75 /* DetailsTableViewCell.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		273262E429BE856700AD552B /* Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extansions.swift; sourceTree = "<group>"; };
 		2734EBDE29B2993C00BB7084 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		274E802B29B25D000055CE75 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -53,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273262E329BE4F3B00AD552B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				279E19A629B1F04B00D5B36D /* MainViewController.swift */,
+				279E19A829B1F04B00D5B36D /* Main.storyboard */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		2734EBDD29B298FD00BB7084 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +71,7 @@
 				2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */,
 			);
 			name = Details;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2736480529B271F8005EE0CD /* Model */ = {
@@ -68,6 +80,7 @@
 				279E19BB29B1F0BD00D5B36D /* API.json */,
 				279E19BD29B1F0ED00D5B36D /* ObjectManager.swift */,
 				279E19BF29B1F2F500D5B36D /* RequestManager.swift */,
+				273262E429BE856700AD552B /* Extansions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -75,7 +88,9 @@
 		2736480729B27232005EE0CD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				279E19A829B1F04B00D5B36D /* Main.storyboard */,
+				273262E329BE4F3B00AD552B /* Main */,
+				274E802F29B25D110055CE75 /* Details Cell */,
+				2734EBDD29B298FD00BB7084 /* Details */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,9 +125,6 @@
 			children = (
 				2736480529B271F8005EE0CD /* Model */,
 				2736480729B27232005EE0CD /* View */,
-				279E19A629B1F04B00D5B36D /* MainViewController.swift */,
-				274E802F29B25D110055CE75 /* Details Cell */,
-				2734EBDD29B298FD00BB7084 /* Details */,
 				279E19AE29B1F04E00D5B36D /* Assets.xcassets */,
 				279E19B029B1F04E00D5B36D /* LaunchScreen.storyboard */,
 				279E19B329B1F04E00D5B36D /* Info.plist */,
@@ -209,6 +221,7 @@
 				279E19A729B1F04B00D5B36D /* MainViewController.swift in Sources */,
 				279E19BE29B1F0ED00D5B36D /* ObjectManager.swift in Sources */,
 				2734EBE029B2993C00BB7084 /* DetailsViewController.swift in Sources */,
+				273262E529BE856700AD552B /* Extansions.swift in Sources */,
 				279E19C029B1F2F500D5B36D /* RequestManager.swift in Sources */,
 				279E19A329B1F04B00D5B36D /* AppDelegate.swift in Sources */,
 				279E19A529B1F04B00D5B36D /* SceneDelegate.swift in Sources */,

@@ -8,37 +8,51 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+  
     //MARK: - Propertis
-//    var presentor = RequestManager()
     var decoder = JSONDecoder()
     var iTunesData: ITunesData?
+    var filterData = [Results]()
+    var podImage = UIImage()
     
     //MARK: - Outlet Colection
-    @IBOutlet weak var SearchBar: UISearchBar!
+    
+    @IBOutlet weak var searchBar: UISearchBar!{ didSet { self.searchBar.resignFirstResponder()}}
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        RequestManager.shared.getItunesData()
-        self.iTunesData = RequestManager.shared.iTunesData
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.registerXib(xibName: DetailsTableViewCell.className)
+        //MARK: - Set NavigationController
+        guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        guard let firstWindow = firstScene.windows.first else { return }
+        let nav = UINavigationController(rootViewController: self)
+        firstWindow.rootViewController = nav
+        
+        getData()
+        self.searchBar.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.registerXib(xibName: DetailsTableViewCell.className)
+}
+    
+    //MARK: - Get ITunesData
+    func getData() {
+        RequestManager.shared.getItunesData(forResource: "API", withExtension: "json") { result in
+                       self.iTunesData = result
+                       self.filterData = self.iTunesData!.results
+               }
     }
     
     //MARK: - TableView set.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return iTunesData?.results.count ?? 0
+        return filterData.count
     }
     
-//    var downloadSess = DownloadSession()
-    var podImage = UIImage()
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.className) as? DetailsTableViewCell else {
             return UITableViewCell()
         }
-        if  let result = iTunesData?.results[indexPath.row] {
+          let result = filterData[indexPath.row]
             if let url = URL(string: "\(result.artworkUrl100)") {
                 RequestManager.shared.downloadImage(url: url, completion: { data, error in
                     if let data = data {
@@ -48,18 +62,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         }
                     }
                 })
-                                     
-                                        
-
-                
-                
-        }
-    }
+            }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let result = iTunesData?.results[indexPath.row] else { return }
+        let result = filterData[indexPath.row] 
         self.showDetails(result: result)
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -68,7 +77,24 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func showDetails(result: Results) {
         let viewController = DetailsViewController.makeFromNib(result: result)
         self.navigationController?.pushViewController(viewController, animated: true)
-    
+    }
+
+}
+
+//MARK: - SearchBar Method
+extension MainViewController: UISearchBarDelegate {
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterData = []
+        if searchBar.text == "" {
+            filterData = iTunesData!.results
+        }
+        for word in iTunesData!.results {
+            if word.trackName.contains(searchText) || word.artistName.contains(searchText) || word.collectionName.contains(searchText)  {
+                filterData.append(word)
+            }
+            
+        }
+         self.tableView.reloadData()
     }
     
 }

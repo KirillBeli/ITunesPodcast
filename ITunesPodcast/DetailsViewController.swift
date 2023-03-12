@@ -22,6 +22,8 @@ class DetailsViewController: UIViewController {
         self.trackNameLabel.text = details?.trackName
 //        #error("set Date")
         self.releseDateLebel.text = details?.releaseDate
+            .getDateWith12_24Logic()
+            .getDateWithOutHours()
         if let result = details {
             let urlString = "\(result.artworkUrl600)"
             if let url = URL(string: "\(urlString)") {

@@ -7,18 +7,7 @@
 
 import Foundation
 
-//MARK: - NSObject
-@objc
-extension NSObject {
-    
-    var className: String {
-        return String(describing: type(of: self))
-    }
-    
-    class var className: String {
-        return String(describing: self)
-    }
-}
+
 
 // MARK: - ITunesData
 struct ITunesData : Codable {
