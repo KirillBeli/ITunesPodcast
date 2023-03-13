@@ -31,6 +31,11 @@ extension UITableView {
     
 }
 
+enum NetworkManagerError {
+    case badResponse(URLResponse?)
+    case badLocalUrl
+}
+
 //MARK: - Date
 extension String {
     

@@ -13,7 +13,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var decoder = JSONDecoder()
     var iTunesData: ITunesData?
     var filterData = [Results]()
-    var podImage = UIImage()
+    var podImage: UIImage?
     
     //MARK: - Outlet Colection
     
@@ -37,9 +37,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: - Get ITunesData
     func getData() {
-        RequestManager.shared.getItunesData(forResource: "API", withExtension: "json") { result in
-                       self.iTunesData = result
-                       self.filterData = self.iTunesData!.results
+        RequestManager.shared.getItunesData(forResource: "API", withExtension: "json") { [weak self] result in
+            self?.iTunesData = result
+            self?.filterData = (self?.iTunesData!.results)!
                }
     }
     
@@ -53,16 +53,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return UITableViewCell()
         }
           let result = filterData[indexPath.row]
-            if let url = URL(string: "\(result.artworkUrl100)") {
-                RequestManager.shared.downloadImage(url: url, completion: { data, error in
-                    if let data = data {
-                        DispatchQueue.main.sync {
-                            self.podImage = UIImage(data: data)!
-                            cell.configure(with: result, image: self.podImage)
+        let reprisentedIdentifire = result.trackId
+        cell.reprisentedIdentifire = reprisentedIdentifire
+        if let url = URL(string: "\(result.artworkUrl100)") {
+            RequestManager.shared.downloadImage(url: url, completion: { [weak self] data, error in
+                if let data = data {
+                    DispatchQueue.main.async {
+//                        print(reprisentedIdentifire, cell.reprisentedIdentifire, reprisentedIdentifire == cell.reprisentedIdentifire)
+                        if (cell.reprisentedIdentifire == reprisentedIdentifire) {
+                            self?.podImage = UIImage(data: data)
+                            cell.configure(with: result, image: self?.podImage)
                         }
                     }
-                })
-            }
+                }
+            })
+        }
         
         return cell
     }

@@ -12,6 +12,7 @@ class RequestManager {
     //MARK: - Properties
     let decoder = JSONDecoder()
     var session: URLSession
+    var images = NSCache<NSString, NSData>()
     static var shared = RequestManager( session: URLSession())
     var urlSessionDelegate: URLSessionDelegate?
     private init(session: URLSession) {
@@ -19,7 +20,7 @@ class RequestManager {
     }
     
     //MARK: - Get ITunesData from File
-    func getItunesData(forResource: String, withExtension: String, complition: @escaping (ITunesData) -> (Void)) {
+     func getItunesData(forResource: String, withExtension: String, complition: @escaping (ITunesData) -> (Void)) {
         guard let fileLocation = Bundle.main.url(forResource: "\(forResource)", withExtension: "\(withExtension)")
         else { return print("error location") }
         guard let data = try? Data(contentsOf: fileLocation) else { return print(ErrorPointer.self) }
@@ -29,22 +30,27 @@ class RequestManager {
     }
     
     //MARK: - DownloadSession
-    func downloadImage(url: URL, completion: @escaping (Data?, Error?) -> (Void)) {
+     func downloadImage(url: URL, completion: @escaping (Data?, Error?) -> (Void)) {
         let configur = URLSessionConfiguration.default
         session = URLSession(configuration: configur)
+         if let imageData = images.object(forKey: url.absoluteString as NSString) {
+             completion(imageData as Data, nil)
+             return
+         }
         session.downloadTask(with: url) { url, response, error in
             if let error = error {
                 completion(nil, error)
                 return
             }
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else { completion(nil, error)
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else { completion(nil, NetworkManagerError.badResponse(response) as? Error)
                 return
             }
-            guard let url = url else { completion(nil, error)
+            guard let url = url else { completion(nil, NetworkManagerError.badLocalUrl as? Error)
                 return
             }
             do{
                 let data = try Data(contentsOf: url)
+                self.images.setObject(data as NSData, forKey: url.absoluteString as NSString)
                 completion(data, nil)
             } catch let error {
                 completion(nil, error)

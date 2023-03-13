@@ -11,7 +11,7 @@ class DetailsViewController: UIViewController {
     
     var details: Results?
 //    var downloadSess = DownloadSession()
-    @IBOutlet weak var podImage: UIImageView!
+    @IBOutlet weak var podImage: UIImageView?
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var releseDateLebel: UILabel!
@@ -27,10 +27,10 @@ class DetailsViewController: UIViewController {
         if let result = details {
             let urlString = "\(result.artworkUrl600)"
             if let url = URL(string: "\(urlString)") {
-                RequestManager.shared.downloadImage(url: url, completion: { data, error in
+                RequestManager.shared.downloadImage(url: url, completion: { [weak self] data, error in
                     if let data = data {
                         DispatchQueue.main.sync {
-                            self.podImage.image = UIImage(data: data)!
+                            self?.podImage?.image = UIImage(data: data)
                         }
                     }
                     
