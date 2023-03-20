@@ -12,6 +12,7 @@
 		2734EBE129B2993C00BB7084 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */; };
 		274E802D29B25D000055CE75 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E802B29B25D000055CE75 /* DetailsTableViewCell.swift */; };
 		274E802E29B25D000055CE75 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274E802C29B25D000055CE75 /* DetailsTableViewCell.xib */; };
+		2796F3BA29C8FAF800BC3C6D /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2796F3B929C8FAF800BC3C6D /* ErrorManager.swift */; };
 		279E19A329B1F04B00D5B36D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279E19A229B1F04B00D5B36D /* AppDelegate.swift */; };
 		279E19A529B1F04B00D5B36D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279E19A429B1F04B00D5B36D /* SceneDelegate.swift */; };
 		279E19A729B1F04B00D5B36D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279E19A629B1F04B00D5B36D /* MainViewController.swift */; };
@@ -30,6 +31,7 @@
 		2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		274E802B29B25D000055CE75 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		274E802C29B25D000055CE75 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
+		2796F3B929C8FAF800BC3C6D /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		279E199F29B1F04B00D5B36D /* ITunesPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITunesPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279E19A229B1F04B00D5B36D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		279E19A429B1F04B00D5B36D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,18 +62,9 @@
 			children = (
 				279E19A629B1F04B00D5B36D /* MainViewController.swift */,
 				279E19A829B1F04B00D5B36D /* Main.storyboard */,
+				274E802F29B25D110055CE75 /* Details Cell */,
 			);
 			name = Main;
-			sourceTree = "<group>";
-		};
-		2734EBDD29B298FD00BB7084 /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				2734EBDE29B2993C00BB7084 /* DetailsViewController.swift */,
-				2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */,
-			);
-			name = Details;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		2736480529B271F8005EE0CD /* Model */ = {
@@ -81,6 +74,7 @@
 				279E19BD29B1F0ED00D5B36D /* ObjectManager.swift */,
 				279E19BF29B1F2F500D5B36D /* RequestManager.swift */,
 				273262E429BE856700AD552B /* Extansions.swift */,
+				2796F3B929C8FAF800BC3C6D /* ErrorManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,8 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				273262E329BE4F3B00AD552B /* Main */,
-				274E802F29B25D110055CE75 /* Details Cell */,
-				2734EBDD29B298FD00BB7084 /* Details */,
+				27B9B23B29C8E38A0044ACD2 /* Details */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -141,6 +134,15 @@
 				279E19A429B1F04B00D5B36D /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		27B9B23B29C8E38A0044ACD2 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				2734EBDE29B2993C00BB7084 /* DetailsViewController.swift */,
+				2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +223,7 @@
 				279E19A729B1F04B00D5B36D /* MainViewController.swift in Sources */,
 				279E19BE29B1F0ED00D5B36D /* ObjectManager.swift in Sources */,
 				2734EBE029B2993C00BB7084 /* DetailsViewController.swift in Sources */,
+				2796F3BA29C8FAF800BC3C6D /* ErrorManager.swift in Sources */,
 				273262E529BE856700AD552B /* Extansions.swift in Sources */,
 				279E19C029B1F2F500D5B36D /* RequestManager.swift in Sources */,
 				279E19A329B1F04B00D5B36D /* AppDelegate.swift in Sources */,

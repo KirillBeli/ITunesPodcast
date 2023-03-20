@@ -15,8 +15,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var filterData = [Results]()
     var podImage: UIImage?
     
-    //MARK: - Outlet Colection
-    
+    //MARK: - Outlet Collection
     @IBOutlet weak var searchBar: UISearchBar!{ didSet { self.searchBar.resignFirstResponder()}}
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,8 +24,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //MARK: - Set NavigationController
         guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         guard let firstWindow = firstScene.windows.first else { return }
-        let nav = UINavigationController(rootViewController: self)
-        firstWindow.rootViewController = nav
+        let navigation = UINavigationController(rootViewController: self)
+        firstWindow.rootViewController = navigation
         
         getData()
         self.searchBar.delegate = self
@@ -59,7 +58,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             RequestManager.shared.downloadImage(url: url, completion: { [weak self] data, error in
                 if let data = data {
                     DispatchQueue.main.async {
-//                        print(reprisentedIdentifire, cell.reprisentedIdentifire, reprisentedIdentifire == cell.reprisentedIdentifire)
                         if (cell.reprisentedIdentifire == reprisentedIdentifire) {
                             self?.podImage = UIImage(data: data)
                             cell.configure(with: result, image: self?.podImage)

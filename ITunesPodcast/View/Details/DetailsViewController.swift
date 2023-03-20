@@ -10,7 +10,6 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     var details: Results?
-//    var downloadSess = DownloadSession()
     @IBOutlet weak var podImage: UIImageView?
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
@@ -20,8 +19,7 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         self.artistNameLabel.text = details?.artistName
         self.trackNameLabel.text = details?.trackName
-//        #error("set Date")
-        self.releseDateLebel.text = details?.releaseDate
+        self.releseDateLebel.text = "Release: \(String(describing: details?.releaseDate))"
             .getDateWith12_24Logic()
             .getDateWithOutHours()
         if let result = details {

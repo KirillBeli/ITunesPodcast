@@ -21,7 +21,7 @@ extension NSObject {
     }
 }
 
-//MARK: - TableView EX
+//MARK: - TableView 
 extension UITableView {
     
     func registerXib(xibName: String) {
@@ -31,10 +31,6 @@ extension UITableView {
     
 }
 
-enum NetworkManagerError {
-    case badResponse(URLResponse?)
-    case badLocalUrl
-}
 
 //MARK: - Date
 extension String {
