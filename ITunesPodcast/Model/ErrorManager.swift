@@ -12,6 +12,7 @@ enum NetworkManagerError {
     case errorLocalUrl
     case errorFileLocation
     case errorDecode
+    case downloadError
     
     var errorDescroption: String? {
         switch self {
@@ -23,6 +24,8 @@ enum NetworkManagerError {
             return "Error File Loaction"
         case .errorDecode:
             return "Decode Error"
+        case .downloadError:
+            return "Download Error"
         }
     }
 }

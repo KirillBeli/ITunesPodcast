@@ -14,27 +14,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var releseDateLebel: UILabel!
+    let modelView = ModelDetailsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.artistNameLabel.text = details?.artistName
-        self.trackNameLabel.text = details?.trackName
-        self.releseDateLebel.text = "Release: \(String(describing: details?.releaseDate))"
-            .getDateWith12_24Logic()
-            .getDateWithOutHours()
-        if let result = details {
-            let urlString = "\(result.artworkUrl600)"
-            if let url = URL(string: "\(urlString)") {
-                RequestManager.shared.downloadImage(url: url, completion: { [weak self] data, error in
-                    if let data = data {
-                        DispatchQueue.main.sync {
-                            self?.podImage?.image = UIImage(data: data)
-                        }
-                    }
-                    
-                })
-                    
-            }
+        modelView.setView(name: artistNameLabel, track: trackNameLabel, relese: releseDateLebel, data: details) { [weak self] image in
+            self?.podImage?.image = image
         }
     }
     

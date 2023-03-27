@@ -35,7 +35,7 @@ extension UITableView {
 //MARK: - Date
 extension String {
     
-    func getDateWith12_24Logic() ->Date {
+     func getDateWith12_24Logic() ->Date {
        
         let formater = DateFormatter()
         formater.dateFormat = Fromters.regular.rawValue

@@ -19,7 +19,7 @@ class RequestManager {
     }
     
     //MARK: - Get ITunesData from File
-     func getItunesData(forResource: String, withExtension: String, complition: @escaping (ITunesData) -> (Void)) {
+      func getItunesData(forResource: String, withExtension: String, complition: @escaping (ITunesData) -> (Void)) {
         guard let fileLocation = Bundle.main.url(forResource: "\(forResource)", withExtension: "\(withExtension)")
          else { return print(NetworkManagerError.errorFileLocation) }
         guard let data = try? Data(contentsOf: fileLocation) else { return print(ErrorPointer.self) }
