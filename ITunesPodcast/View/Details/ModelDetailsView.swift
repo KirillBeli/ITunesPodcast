@@ -10,13 +10,11 @@ import UIKit
 
 class ModelDetailsView {
     
-    func setView(name: UILabel, track: UILabel, relese: UILabel, data: Results?, completion: @escaping (UIImage)->()) {
-        name.text = data?.artistName
-        track.text = data?.trackName
-        relese.text = "Release: \(String(describing: data?.releaseDate))"
-            .getDateWith12_24Logic()
-            .getDateWithOutHours()
-        if let result = data {
+     var details: Results?
+    
+    func getImage(completion: @escaping (UIImage)->()) {
+        
+        if let result = details {
             let urlString = "\(result.artworkUrl600)"
             if let url = URL(string: "\(urlString)") {
                 RequestManager.shared.downloadImage(url: url, completion: { data, error in

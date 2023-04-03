@@ -64,6 +64,7 @@
 		273262E329BE4F3B00AD552B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				278FC04629D203590000D2E0 /* ModelMainView.swift */,
 				279E19A629B1F04B00D5B36D /* MainViewController.swift */,
 				279E19A829B1F04B00D5B36D /* Main.storyboard */,
 				274E802F29B25D110055CE75 /* Details Cell */,
@@ -79,8 +80,6 @@
 				279E19BF29B1F2F500D5B36D /* RequestManager.swift */,
 				273262E429BE856700AD552B /* Extansions.swift */,
 				2796F3B929C8FAF800BC3C6D /* ErrorManager.swift */,
-				278FC04629D203590000D2E0 /* ModelMainView.swift */,
-				278FC04829D203950000D2E0 /* ModelDetailsView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,6 +144,7 @@
 		27B9B23B29C8E38A0044ACD2 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				278FC04829D203950000D2E0 /* ModelDetailsView.swift */,
 				2734EBDE29B2993C00BB7084 /* DetailsViewController.swift */,
 				2734EBDF29B2993C00BB7084 /* DetailsViewController.xib */,
 			);

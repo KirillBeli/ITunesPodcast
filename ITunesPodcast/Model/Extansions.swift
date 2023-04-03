@@ -64,7 +64,7 @@ enum Fromters :String {
     
     case regular = "yyyy-MM-dd'T'HH:mm:ss"
     case timeOnly = "HH:mm"
-    case dateOnly = "yyyy-MM-dd"
+    case dateOnly = "dd-MM-yyyy" 
     case ampm = "yyyy-MM-dd'T'hh:mm:ss"
 }
 
